@@ -38,7 +38,8 @@ function! projectsCtags#GenCtags()
     let ctagsCmd = printf('%s -f %s/%s %s',g:ctagsLang[&ft], projectAbsoluteDir, g:tagFile, projectAbsoluteDir)
     if (!empty(ctagsCmd))
         let vimCmd = printf('sh -c "%s 1>%s 2>%s"', ctagsCmd, '/tmp/ctagsout', '/tmp/ctagserr')
-        execute "!" . vimCmd
-        "execute redraw!
+        execute "silent!" . vimCmd
+        execute "redraw!"
+        echo 'CTags generated'
     endif
 endfunction
